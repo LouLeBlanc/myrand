@@ -11,15 +11,28 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include <ctype.h>
+
+#include "myrand.h"
+
+void printVersion(char * progname)
+{
+  printf("%s Random Number Generator, version %s.\n",
+         MYRAND_VERSION, progname);
+}
 
 /* Print usage to help the user along */
 void usage(char * progname)
 {
+  printVersion(progname);
+  printf("Usage: \n");
   printf("%s [<INT>]\n", progname);
-  printf("\tIf <INT> is omitted, %s returns a single random number.\n", progname);
-  printf("\tIf <INT> is specified, %s returns <INT> random numbers.\n", progname);
+  printf("\tIf <INT> is omitted, %s returns a single random number.\n",
+         progname);
+  printf("\tIf <INT> is specified, %s returns <INT> random numbers.\n",
+         progname);
   printf("\n\t<INT> must be an integer greater than 0.\n");
   return;
 }
@@ -34,6 +47,10 @@ int main (int argc, char *argv[])
   if (argc > 1)
     {
       char * inputNum = argv[1];
+
+      if (strcmp(inputNum, "-v"))
+        {
+        }
 
       if (!isdigit(inputNum[0]))
         {
@@ -53,7 +70,7 @@ int main (int argc, char *argv[])
   srandom(time(NULL));
   for (i = 0; i < count; i++)
     {
-      int randomNumber = (random() % 10000);
+      int randomNumber = (random() % MYRAND_MAX);
       printf("%8d", randomNumber);
       cols++;
       /* Print 8 columns */

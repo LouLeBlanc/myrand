@@ -12,10 +12,12 @@ TARGET = myrand
 LIBS = -lm
 CC = gcc
 SRCDIR = src
+INCDIR = include
 OBJDIR = obj
 CFLAGS = -g -Wall
 
 SOURCE = $(SRCDIR)/$(TARGET).c
+HEADER = $(INCDIR)/$(TARGET).h
 OBJECT = $(OBJDIR)/$(TARGET).o
 
 .PHONY: all default clean
@@ -29,8 +31,8 @@ clean:
 	rm -f $(TARGET)
 	rmdir $(OBJDIR)
 
-$(OBJECT): $(SOURCE) $(OBJDIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJECT): $(SOURCE) $(HEADER) $(OBJDIR)
+	$(CC) $(CFLAGS) -c $(SOURCE) -I$(INCDIR) -o $@
 
 $(OBJDIR):
 	mkdir $(OBJDIR)
