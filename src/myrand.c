@@ -26,7 +26,6 @@ void printVersion(char * progname)
 /* Print usage to help the user along */
 void usage(char * progname)
 {
-  printVersion(progname);
   printf("Usage: \n");
   printf("%s [<INT>]\n", progname);
   printf("\tIf <INT> is omitted, %s returns a single random number.\n",
@@ -35,6 +34,13 @@ void usage(char * progname)
          progname);
   printf("\n\t<INT> must be an integer greater than 0.\n");
   return;
+}
+
+void failGracefully(char * progname)
+{
+  fprintf(stderr, "Invalid input value.\n");
+  usage(progname);
+  exit(EXIT_FAILURE);
 }
 
 /* Main process */
@@ -47,10 +53,12 @@ int main (int argc, char *argv[])
   if (argc > 1)
     {
       char * inputNum = argv[1];
+      count = 0;
 
       if (isdigit(inputNum[0]))
         count = atoi(argv[1]);
-      else if (strcmp(inputNum, "-v") == 0)
+
+      if (strcmp(inputNum, "-v") == 0)
         {
           printVersion(argv[0]);
           return 0;
@@ -60,10 +68,9 @@ int main (int argc, char *argv[])
           usage(argv[0]);
           return 0;
         }
-      else
+      else if (count < 1)
         {
-          usage(argv[0]);
-          return 1;
+          failGracefully(argv[0]);
         }
     }
 
@@ -80,5 +87,10 @@ int main (int argc, char *argv[])
           printf("\n");
         }
     }
-  printf("\n");
+
+  /* Only add a newline if we didn't just print one. */
+  if (cols > 0)
+    printf("\n");
+
+  exit(EXIT_SUCCESS);
 }
