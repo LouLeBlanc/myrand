@@ -26,13 +26,17 @@ void printVersion(char * progname)
 /* Print usage to help the user along */
 void usage(char * progname)
 {
-  printf("Usage: \n");
-  printf("%s [<INT>]\n", progname);
-  printf("\tIf <INT> is omitted, %s returns a single random number.\n",
+  printf("  Usage: \n");
+  printf("\t%s [<INT>]\n", progname);
+  printf("\t\tIf <INT> is omitted, %s returns a single random number.\n",
          progname);
-  printf("\tIf <INT> is specified, %s returns <INT> random numbers.\n",
+  printf("\t\tIf <INT> is specified, %s returns <INT> random numbers.\n",
          progname);
-  printf("\n\t<INT> must be an integer greater than 0.\n");
+  printf("\t\t<INT> must be an integer greater than 0.\n");
+  printf("\t%s -h\n", progname);
+  printf("\t\tDisplay help information for %s and exit\n", progname);
+  printf("\t%s -v\n", progname);
+  printf("\t\tDisplay version information for %s and exit\n", progname);
   return;
 }
 
