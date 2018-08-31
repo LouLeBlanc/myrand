@@ -31,6 +31,7 @@ all: default
 clean:
 	rm -f $(OBJECT)
 	rm -f $(TARGET)
+	rm -f %.new
 	rmdir $(OBJDIR)
 	rmdir $(BINDIR)
 
