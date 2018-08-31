@@ -18,8 +18,9 @@
 void usage(char * progname)
 {
   printf("%s [<INT>]\n", progname);
-  printf("\tIf <INT> is omitted, %s returns a single random number\n", progname);
-  printf("\tIf <INT> is specified, %s returns <INT> random numbers\n", progname);
+  printf("\tIf <INT> is omitted, %s returns a single random number.\n", progname);
+  printf("\tIf <INT> is specified, %s returns <INT> random numbers.\n", progname);
+  printf("\n\t<INT> must be an integer greater than 0.\n");
   return;
 }
 
@@ -34,7 +35,7 @@ int main (int argc, char *argv[])
     {
       char * inputNum = argv[1];
 
-      if (isalpha(inputNum[0]))
+      if (!isdigit(inputNum[0]))
         {
           usage(argv[0]);
           return 0;
@@ -42,6 +43,11 @@ int main (int argc, char *argv[])
 
       if (isdigit(inputNum[0]))
         count = atoi(argv[1]);
+      if (count < 1)
+        {
+          usage(argv[0]);
+          return 0;
+        }
     }
 
   srandom(time(NULL));
