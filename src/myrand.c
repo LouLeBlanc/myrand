@@ -20,7 +20,7 @@
 void printVersion(char * progname)
 {
   printf("%s Random Number Generator, version %s.\n",
-         MYRAND_VERSION, progname);
+         progname, MYRAND_VERSION);
 }
 
 /* Print usage to help the user along */
@@ -48,22 +48,22 @@ int main (int argc, char *argv[])
     {
       char * inputNum = argv[1];
 
-      if (strcmp(inputNum, "-v"))
-        {
-        }
-
-      if (!isdigit(inputNum[0]))
-        {
-          usage(argv[0]);
-          return 0;
-        }
-
       if (isdigit(inputNum[0]))
         count = atoi(argv[1]);
-      if (count < 1)
+      else if (strcmp(inputNum, "-v") == 0)
+        {
+          printVersion(argv[0]);
+          return 0;
+        }
+      else if (strcmp(inputNum, "-h") == 0)
         {
           usage(argv[0]);
           return 0;
+        }
+      else
+        {
+          usage(argv[0]);
+          return 1;
         }
     }
 
