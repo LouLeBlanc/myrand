@@ -1,7 +1,7 @@
 Name:		myrand
 Version:	
 Release:	1%{?dist}
-Summary:	
+Summary:	Basic random number generator for the command line
 
 Group:		
 License:	UnLicense
