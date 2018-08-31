@@ -8,17 +8,19 @@
 # Basic makefile for random number generator.
 
 
-TARGET = myrand
+BIN = myrand
 LIBS = -lm
 CC = gcc
 SRCDIR = src
 INCDIR = include
 OBJDIR = obj
+BINDIR = bin
 CFLAGS = -g -Wall
 
-SOURCE = $(SRCDIR)/$(TARGET).c
-HEADER = $(INCDIR)/$(TARGET).h
-OBJECT = $(OBJDIR)/$(TARGET).o
+SOURCE = $(SRCDIR)/$(BIN).c
+HEADER = $(INCDIR)/$(BIN).h
+OBJECT = $(OBJDIR)/$(BIN).o
+TARGET = $(BINDIR)/$(BIN)
 
 .PHONY: all default clean
 
@@ -30,6 +32,7 @@ clean:
 	rm -f $(OBJECT)
 	rm -f $(TARGET)
 	rmdir $(OBJDIR)
+	rmdir $(BINDIR)
 
 $(OBJECT): $(SOURCE) $(HEADER) $(OBJDIR)
 	$(CC) $(CFLAGS) -c $(SOURCE) -I$(INCDIR) -o $@
@@ -37,6 +40,9 @@ $(OBJECT): $(SOURCE) $(HEADER) $(OBJDIR)
 $(OBJDIR):
 	mkdir $(OBJDIR)
 
-$(TARGET): $(OBJECT)
-	$(CC) $(OBJECT) -Wall $(LIBS) -o $(TARGET)
+$(BINDIR):
+	mkdir $(BINDIR)
+
+$(TARGET): $(OBJECT) $(BINDIR)
+	$(CC) $(OBJECT) -Wall $(LIBS) -o $@
 
