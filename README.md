@@ -24,3 +24,7 @@ the specified number of random integers.
     errno            System error
 ```
 
+## TODO
+- Add a command line option to specify the upper bound for random integers  
+- Add a command line option to specify the lower bound for random integers  
+
