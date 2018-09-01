@@ -3,6 +3,9 @@
 
 ---
 
+### Website
+<a href="https://github.com/LouLeBlanc/myrand">https://github.com/LouLeBlanc/myrand</a>
+
 The myrand utility is a small program written in C that generates random numbers on the command line.
 By default, a single random integer is generated, but if an integer is passed in, myrand will generate
 the specified number of random integers.
