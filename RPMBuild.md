@@ -19,12 +19,13 @@ Next, add a changelog to the top of the `%changelog` section:
 ```
 
 ### Formatting the changelog
-The following formatting rules must be followed:  
-*Always add new entries just below the `%changelog` line with a blank line between entries.  
-*The changelog should be in chronological order from newest to older entries.  
-*The date should aways be in the format as displayed by the `date +"%a %b %e %Y"` command.  
+The following formatting rules must be followed when updating the changelog:  
+* Always add new entries just below the `%changelog` line with a blank line between entries.  
+* The changelog should be in chronological order from newest to older entries.  
+* The date should aways be in the format as displayed by the `date +"%a %b %e %Y"` command.  
 
-Once this is correct, commit the changes and build the RPM with the following command:
+## Build the RPM
+Once the preparation is complete, commit the changes and build the RPM with the following command:
 
 ```
 make rpmbuild
@@ -36,7 +37,7 @@ This target will perform the following steps:
 4. Perform the RPM build
 5. Copy the RPMS directory from ~/rpmbuild back to the project directory
 
-When complete, there will be an RPMS directory tree with the RPM present as indicated by the output of the `tree` command:
+When complete, there will be an RPMS directory tree with the RPM present. The make target will show this by displaying the output of the `tree` command:
 
 <pre>
 $ make rpmbuild
@@ -48,6 +49,7 @@ RPM build complete
 1 directory, 1 file
 </pre>
 
+## Verify the build
 When the build is complete, verify the RPM:
 ```
 $ rpm -qpl RPMS/x86_64/myrand-0.1-1.fc28.x86_64.rpm
@@ -59,6 +61,7 @@ $ rpm -qpl RPMS/x86_64/myrand-0.1-1.fc28.x86_64.rpm
 /usr/share/doc/myrand/README.md
 ```
 
+## Tag the build
 Next, use the rpm basename to create a git tag to mark the point at which this build was made:
 ```
 $ git tag myrand-0.1-1.fc28.x86_64
