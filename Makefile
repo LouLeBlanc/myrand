@@ -15,16 +15,19 @@ SRCDIR = src
 INCDIR = include
 OBJDIR = obj
 BINDIR = bin
+DESTDIR := 
 CFLAGS = -g -Wall
 
 SOURCE = $(SRCDIR)/$(BIN).c
 HEADER = $(INCDIR)/$(BIN).h
 OBJECT = $(OBJDIR)/$(BIN).o
 TARGET = $(BINDIR)/$(BIN)
+ARCHIVE = myrand.tar.gz
+RPM_ROOT = ~/rpmbuild
 
-.PHONY: all default clean install srcarchive
+.PHONY: all default clean install srcarchive rpmbuild
 
-default: $(TARGET)
+default: $(BIN)
 
 all: default
 
@@ -32,7 +35,7 @@ clean:
 	@rm -rf $(OBJDIR)
 	@rm -rf $(BINDIR)
 	@rm -f *.new
-	@rm -f *.tgz
+	@rm -f *.gz
 
 $(OBJECT): $(SOURCE) $(HEADER) $(OBJDIR)
 	@$(CC) $(CFLAGS) -c $(SOURCE) -I$(INCDIR) -o $@
@@ -46,11 +49,21 @@ $(BINDIR):
 $(TARGET): $(OBJECT) $(BINDIR)
 	@$(CC) $(OBJECT) -Wall $(LIBS) -o $@
 
+$(BIN): $(TARGET)
+
 install: $(TARGET)
 	@mkdir -p $(DESTDIR)/usr/bin
-	install -m 0755 $(BIN) $(DESTDIR)/usr/bin/$(BIN)
+	@mkdir -p $(DESTDIR)/usr/share/doc/myrand
+	@install -m 0755 $(TARGET) $(DESTDIR)/usr/bin/$(BIN)
+	@install -m 0644 README.md $(DESTDIR)/usr/share/doc/myrand/README.md
 
 srcarchive:
-	@tar zcf myrand_source.tgz src include README.md Makefile
+	@tar zcvf $(ARCHIVE) src include README.md Makefile
+
+rpmbuild: srcarchive
+	@rpmdev-setuptree
+	@cp $(ARCHIVE) $(RPM_ROOT)/SOURCES/.
+	@cp myrand.spec $(RPM_ROOT)/SPECS/.
+	rpmbuild -bb $(RPM_ROOT)/SPECS/myrand.spec
 
 
