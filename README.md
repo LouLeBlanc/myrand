@@ -1,5 +1,5 @@
 # myrand
-###Random number generator in RPM packaging
+### Random number generator in RPM packaging
 
 ---
 
@@ -24,7 +24,7 @@ the specified number of random integers.
     errno            System error
 ```
 
-## TODO
+### TODO
 - Add a command line option to specify the upper bound for random integers  
 - Add a command line option to specify the lower bound for random integers  
 
