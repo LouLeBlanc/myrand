@@ -22,28 +22,35 @@ HEADER = $(INCDIR)/$(BIN).h
 OBJECT = $(OBJDIR)/$(BIN).o
 TARGET = $(BINDIR)/$(BIN)
 
-.PHONY: all default clean
+.PHONY: all default clean install srcarchive
 
 default: $(TARGET)
 
 all: default
 
 clean:
-	rm -f $(OBJECT)
-	rm -f $(TARGET)
-	rm -f %.new
-	rmdir $(OBJDIR)
-	rmdir $(BINDIR)
+	@rm -rf $(OBJDIR)
+	@rm -rf $(BINDIR)
+	@rm -f *.new
+	@rm -f *.tgz
 
 $(OBJECT): $(SOURCE) $(HEADER) $(OBJDIR)
-	$(CC) $(CFLAGS) -c $(SOURCE) -I$(INCDIR) -o $@
+	@$(CC) $(CFLAGS) -c $(SOURCE) -I$(INCDIR) -o $@
 
 $(OBJDIR):
-	mkdir $(OBJDIR)
+	@mkdir $(OBJDIR)
 
 $(BINDIR):
-	mkdir $(BINDIR)
+	@mkdir $(BINDIR)
 
 $(TARGET): $(OBJECT) $(BINDIR)
-	$(CC) $(OBJECT) -Wall $(LIBS) -o $@
+	@$(CC) $(OBJECT) -Wall $(LIBS) -o $@
+
+install: $(TARGET)
+	@mkdir -p $(DESTDIR)/usr/bin
+	install -m 0755 $(BIN) $(DESTDIR)/usr/bin/$(BIN)
+
+srcarchive:
+	@tar zcf myrand_source.tgz src include README.md Makefile
+
 
