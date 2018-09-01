@@ -15,8 +15,8 @@
 %define		_source_dir %{_topdir}/SOURCES
 
 Name:		myrand
-Version:	0.1
-Release:	2%{?dist}
+Version:	1.0
+Release:	0%{?dist}
 Summary:	Basic random number generator for the command line
 
 Group:		Brandeis
@@ -57,6 +57,11 @@ rm -f %{_source_dir}/%{SOURCEURL0}
 
 
 %changelog
+* Sat Sep 1 2018 Louis LeBlanc <lleblanc@brandeis.edu> - 1.0.0
+- Include push --tags operation
+- Add website link to github repo
+- Update README.md
+
 * Sat Sep 1 2018 Louis LeBlanc <lleblanc@brandeis.edu> - 0.1.2
 - Add info to RPMBuild.md
 - Improve formatting of RPMBuild
