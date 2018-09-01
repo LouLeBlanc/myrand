@@ -11,4 +11,3 @@
 
 #define MYRAND_MAX 10000
 
-#define MYRAND_VERSION "0.1"

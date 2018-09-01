@@ -17,33 +17,23 @@
 
 #include "myrand.h"
 
-void printVersion(char * progname)
-{
-  printf("%s Random Number Generator, version %s.\n",
-         progname, MYRAND_VERSION);
-}
-
 /* Print usage to help the user along */
-void usage(char * progname)
+void usage()
 {
   printf("  Usage: \n");
-  printf("\t%s [<INT>]\n", progname);
-  printf("\t\tIf <INT> is omitted, %s returns a single random number.\n",
-         progname);
-  printf("\t\tIf <INT> is specified, %s returns <INT> random numbers.\n",
-         progname);
+  printf("\tmyrand [<INT>]\n" );
+  printf("\t\tIf <INT> is omitted, myrand returns a single random number.\n");
+  printf("\t\tIf <INT> is specified, myrand returns <INT> random numbers.\n");
   printf("\t\t<INT> must be an integer greater than 0.\n");
-  printf("\t%s -h\n", progname);
-  printf("\t\tDisplay help information for %s and exit\n", progname);
-  printf("\t%s -v\n", progname);
-  printf("\t\tDisplay version information for %s and exit\n", progname);
+  printf("\tmyrand -h\n");
+  printf("\t\tDisplay help information for myrand and exit\n");
   return;
 }
 
-void failGracefully(char * progname)
+void failGracefully()
 {
   fprintf(stderr, "Invalid input value.\n");
-  usage(progname);
+  usage();
   exit(EXIT_FAILURE);
 }
 
@@ -62,19 +52,14 @@ int main (int argc, char *argv[])
       if (isdigit(inputNum[0]))
         count = atoi(argv[1]);
 
-      if (strcmp(inputNum, "-v") == 0)
+      if (strcmp(inputNum, "-h") == 0)
         {
-          printVersion(argv[0]);
-          return 0;
-        }
-      else if (strcmp(inputNum, "-h") == 0)
-        {
-          usage(argv[0]);
+          usage();
           return 0;
         }
       else if (count < 1)
         {
-          failGracefully(argv[0]);
+          failGracefully();
         }
     }
 
