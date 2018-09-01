@@ -1,4 +1,3 @@
-# 
 # Written by Louis LeBlanc
 # For Homework Assignment 5
 # Release Control and Continuous Integration/Continuous Delivery
@@ -34,8 +33,8 @@ all: default
 clean:
 	@rm -rf $(OBJDIR)
 	@rm -rf $(BINDIR)
-	@rm -f *.new
 	@rm -f *.gz
+	@rm -rf RPMS
 
 $(OBJECT): $(SOURCE) $(HEADER) $(OBJDIR)
 	@$(CC) $(CFLAGS) -c $(SOURCE) -I$(INCDIR) -o $@
@@ -58,12 +57,14 @@ install: $(TARGET)
 	@install -m 0644 README.md $(DESTDIR)/usr/share/doc/myrand/README.md
 
 srcarchive:
-	@tar zcvf $(ARCHIVE) src include README.md Makefile
+	@tar zcf $(ARCHIVE) src include README.md Makefile
 
 rpmbuild: srcarchive
 	@rpmdev-setuptree
 	@cp $(ARCHIVE) $(RPM_ROOT)/SOURCES/.
 	@cp myrand.spec $(RPM_ROOT)/SPECS/.
-	rpmbuild -bb $(RPM_ROOT)/SPECS/myrand.spec
-
+	@rpmbuild --quiet -bb $(RPM_ROOT)/SPECS/myrand.spec
+	@cp -r $(RPM_ROOT)/RPMS .
+	@echo "RPM build complete"
+	@tree RPMS
 
