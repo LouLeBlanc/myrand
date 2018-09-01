@@ -49,6 +49,12 @@ RPM build complete
 1 directory, 1 file
 </pre>
 
+### Note:
+The `rpmbuild` target assumes that you have not changed the location of the `%_topdir` macro in your `~/.rpmmacros` configuration file.  IF you have, you'll have to modify the call to `make rpmbuild` as follows:
+```
+make rpmbuild RPM_ROOT=/path/to/new/rpmbuild/dir
+```
+
 ## Verify the build
 When the build is complete, verify the RPM:
 ```

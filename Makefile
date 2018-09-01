@@ -22,7 +22,7 @@ HEADER = $(INCDIR)/$(BIN).h
 OBJECT = $(OBJDIR)/$(BIN).o
 TARGET = $(BINDIR)/$(BIN)
 ARCHIVE = myrand.tar.gz
-RPM_ROOT = ~/rpmbuild
+RPM_ROOT := ~/rpmbuild
 
 .PHONY: all default clean install srcarchive rpmbuild
 
