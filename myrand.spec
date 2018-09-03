@@ -16,7 +16,7 @@
 
 Name:		myrand
 Version:	1.0
-Release:	0%{?dist}
+Release:	1%{?dist}
 Summary:	Basic random number generator for the command line
 
 Group:		Brandeis
@@ -57,6 +57,10 @@ rm -f %{_source_dir}/%{SOURCEURL0}
 
 
 %changelog
+* Mon Sep 3 2018 Louis LeBlanc <lleblanc@brandeis.edu> - 1.0.1
+- Clean up usage documentation and help display
+- Full release bump
+
 * Sat Sep 1 2018 Louis LeBlanc <lleblanc@brandeis.edu> - 1.0.0
 - Include push --tags operation
 - Add website link to github repo

@@ -25,7 +25,7 @@ The following formatting rules must be followed when updating the changelog:
 * The date should aways be in the format as displayed by the `date +"%a %b %e %Y"` command.  
 
 ## Build the RPM
-Once the preparation is complete, commit the changes and build the RPM with the following command:
+Once the preparation is complete, build the RPM with the following command:
 
 ```
 make rpmbuild
@@ -68,7 +68,7 @@ $ rpm -qpl RPMS/x86_64/myrand-0.1-1.fc28.x86_64.rpm
 ```
 
 ## Tag the build
-Next, use the rpm basename to create a git tag to mark the point at which this build was made:
+Next, commit the changes and use the rpm basename to create a git tag to mark the point at which this build was made:
 ```
 $ git tag myrand-0.1-1.fc28.x86_64
 ```
