@@ -21,10 +21,10 @@
 void usage()
 {
   printf("  Usage: \n");
-  printf("\tmyrand [<INT>]\n" );
-  printf("\t\tIf <INT> is omitted, myrand returns a single random number.\n");
-  printf("\t\tIf <INT> is specified, myrand returns <INT> random numbers.\n");
-  printf("\t\t<INT> must be an integer greater than 0.\n");
+  printf("\tmyrand [<count>]\n" );
+  printf("\t\tIf <count> is omitted, myrand returns a single random number.\n");
+  printf("\t\tIf <count> is specified, myrand returns <count> random numbers.\n");
+  printf("\t\t<count> must be an integer greater than 0.\n");
   printf("\tmyrand -h\n");
   printf("\t\tDisplay help information for myrand and exit\n");
   return;

@@ -19,8 +19,6 @@ the specified number of random integers.
       <count> must be an integer greater than 0.
     myrand -h
       display help information for myrand and exit.
-    myrand -v
-      display version information for myrand and exit.
 
   Return Values
     0                success
